@@ -45,18 +45,6 @@ public class TrimView extends View {
         paint3.setColor(Color.LTGRAY);
     }
         
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        /*
-        _w = w;
-        _h = h;
-        sqWidth = w - 40;
-        sqHeight = w - 40;
-        sqX = w / 2;
-        sqY = h / 2;
-        */
-    }
-    
     // ‰æ‘œ‚ÌƒTƒCƒY‚ðŽæ“¾
     public void sizeSet(int w, int h) {
         _w = w;

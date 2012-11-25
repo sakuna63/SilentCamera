@@ -19,7 +19,7 @@ public class CameraView  extends SurfaceView implements SurfaceHolder.Callback,C
     protected Camera myCamera;
     
 	/**
-     * Constracter
+     * Constructor
      */
     CameraView(Context context) {
         super(context);
@@ -37,7 +37,7 @@ public class CameraView  extends SurfaceView implements SurfaceHolder.Callback,C
     }
     private void savePhotoBitmap(){
     	try {
-    		FileOutputStream fos = new FileOutputStream((BitmapHolder._pathBitmap = "/sdcard/RIM Photo/" + String.valueOf(new Date().getTime()) + ".jpg"));
+    		FileOutputStream fos = new FileOutputStream((BitmapHolder._pathBitmap = "/sdcard/SilentCamera/" + String.valueOf(new Date().getTime()) + ".jpg"));
 			BitmapHolder._holdedBitmap.compress(CompressFormat.JPEG, 100, fos);
 			// ï€ë∂èàóùèIóπ
 			fos.close();

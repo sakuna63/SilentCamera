@@ -2,24 +2,16 @@ package com.example.silentcamera;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -28,8 +20,8 @@ import android.widget.Toast;
 
 public class SilentCamera extends Activity implements OnClickListener{
 
-	private static final int REQUEST_CROP_PICK = 100;
     private static final int GETTRIM = 1;
+    
     private static final int FP = LinearLayout.LayoutParams.FILL_PARENT;
     private static final int WC = LinearLayout.LayoutParams.WRAP_CONTENT;
 	public static boolean btn_flag = true;
@@ -73,7 +65,7 @@ public class SilentCamera extends Activity implements OnClickListener{
         if(requestCode == GETTRIM){
             if(resultCode == RESULT_OK){
                 toast("トリミングに成功しました。");
-                String path = "/sdcard/RIM Photo/" + String.valueOf(new Date().getTime()) + ".jpg";
+                String path = "/sdcard/SilentCamera/" + String.valueOf(new Date().getTime()) + ".jpg";
             	try {
         			FileOutputStream fos = new FileOutputStream(path);
         			BitmapHolder._holdedBitmap.compress(CompressFormat.JPEG, 100, fos);
@@ -95,7 +87,6 @@ public class SilentCamera extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		if(!btn_flag) return;
 		if( v == shutterBtn){
-			log("shutter");
 			btn_flag = false;
 			cameraView.takePhoto();
 		}
@@ -104,17 +95,9 @@ public class SilentCamera extends Activity implements OnClickListener{
 	        	toast("何か撮影してください。");
 	        	return;
 	        }
-//			BitmapHolder._holdedBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.camera_icon);
 			Intent intent = new Intent(getApplicationContext(),TrimingActivity.class);
 	        startActivityForResult(intent,GETTRIM);			
 		}
-	}
-	
-	/**
-	 * Original methods
-	 */
-	private void log(String mes){
-		Log.d("TAG",mes);
 	}
 	private void toast(String mes){
 		Toast.makeText(this, mes, Toast.LENGTH_LONG).show();
